@@ -1,20 +1,27 @@
 import React from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-          <div className="blue-orb pulse"></div>
-          <div className="purple-orb pulse"></div>
-          <div className="orange-orb pulse"></div>
-        <div className="indigo-orb pulse"></div>
-        <div className="yellow-orb pulse"></div>
-          <div className="green-orb pulse"></div>
-          <div className="red-orb pulse"></div>
-      </header>
-    </div>
-  );
+import Background from './Background'
+import Content from './Content'
+
+class App extends React.Component {
+  state = {
+    display: true
+  }
+  handleButton = () => {
+    this.setState({
+      display: !this.state.display
+    })
+  }
+  render() {
+    return (
+      <div className="App">
+        <Background />
+        {this.state.display && <Content />}
+        <button onClick={this.handleButton} className="content-button">{this.state.display ? "Hide" : "Show"}</button>
+      </div>
+    );
+  }
 }
 
 export default App;
